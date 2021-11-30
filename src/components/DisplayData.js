@@ -1,18 +1,26 @@
 import React, {Component} from "react";
 
 class DisplayData extends Component {
-    constructor(props) {
-        super(props);
+
+    formatData = (object) => {
+        const { name, email, phone, city} = object
+        return (
+            <div>
+                <h2>Personal Details: </h2>
+                <p><b>Name: </b>{name}</p>
+                <p><b>Email: </b>{email}</p>
+                <p><b>Phone: </b>{phone}</p>
+                <p><b>City: </b>{city}</p>
+            </div>
+        )
     }
 
     render() {
-        const { data } = this.props
+        const { ...fields } = this.props.dataObj
 
         return (
             <div>
-                {data.map( (info) => {
-                    return <p>{info}</p>
-                })}
+                {this.formatData(fields)}
             </div>
         )
     }
