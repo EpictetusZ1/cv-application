@@ -38,12 +38,13 @@ class Main extends Component {
         return (
             <div>
                 <h1 className={"title"}> CV Generator </h1>
-               {/* Personal Info */}
-                <PersonalBlock data={this.state.personalData} updateParent={this.handleSubmit} />
+                {/* Personal Info */}
+                {/* Conditional Render to Remove form on submit*/}
+                {!this.state.renderPersonal && <PersonalBlock data={this.state.personalData} updateParent={this.handleSubmit} />}
                 {this.state.renderPersonal && <DisplayData dataObj={this.state.personalData} />}
 
-               {/* Educational Info */}
-               {/* Practical Info */}
+                {/* Educational Info */}
+                {/* Practical Info */}
             </div>
         )
     }

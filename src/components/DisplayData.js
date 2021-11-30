@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import styles from "./displayDataStyles.module.css"
 
 class DisplayData extends Component {
 
@@ -19,7 +20,7 @@ class DisplayData extends Component {
         const { ...fields } = this.props.dataObj
 
         return (
-            <div>
+            <div className={styles.darkSection}>
                 {this.formatData(fields)}
             </div>
         )
