@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import styles from "../styles/StyleMain.module.css"
 
 class PersonalBlock extends Component {
     constructor(props) {
@@ -11,68 +12,64 @@ class PersonalBlock extends Component {
         }
     }
 
-    handleNameChange = (e) => {
+    handleChange = (e) => {
+        const target = e.target
+        const name = target.name
         this.setState({
-            name: e.target.value
-        })
-    }
-
-    handleEmailChange = (e) => {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    handlePhoneChange = (e) => {
-        this.setState({
-            phone: e.target.value
-        })
-    }
-
-    handleCityChange = (e) => {
-        this.setState({
-            city: e.target.value
+            [name]: target.value
         })
     }
 
     render() {
+        const { name, email, phone, city} = this.state
         return (
-            <div className="dataBlock personalBlock">
-                <form className="cvSection" onSubmit={ (e) =>  this.props.updateParent(e, this.state) }>
+            <div className={styles.dataBlock}>
+                <form onSubmit={ (e) => this.props.updateParent(e, this.state) }>
                     <h2>Add Personal Information: </h2>
-                    <label htmlFor="personName">Name: </label>
-                    <input type="text"
-                           id="personName"
-                           onChange={this.handleNameChange}
-                    />
-                    <br/>
-
-                    <label htmlFor="personEmail">Email: </label>
-                    <input type="text"
-                           id="personEmail"
-                           onChange={this.handleEmailChange}
-                    />
-                    <br/>
-
-                    <label htmlFor="personPhone">Phone: </label>
-                    <input type="text"
-                           id="personPhone"
-                           onChange={this.handlePhoneChange}
-                    />
-                    <br/>
-
-                    <label htmlFor="personCity">City: </label>
-                    <input type="text"
-                           id="personCity"
-                           onChange={this.handleCityChange}
-                    />
-                    <br/>
-
-                    <button type="submit">
+                    <div className={styles.formEl}>
+                        <label htmlFor="personName">Name: </label>
+                        <input type="text"
+                               id="personName"
+                               name="name"
+                               placeholder="Name"
+                               value={name}
+                               onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className={styles.formEl}>
+                        <label htmlFor="personEmail">Email: </label>
+                        <input type="text"
+                               id="personEmail"
+                               name="email"
+                               placeholder="Email"
+                               value={email}
+                               onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className={styles.formEl}>
+                        <label htmlFor="personPhone">Phone: </label>
+                        <input type="text"
+                               id="personPhone"
+                               name="phone"
+                               placeholder="Phone"
+                               value={phone}
+                               onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className={styles.formEl}>
+                        <label htmlFor="personCity">City: </label>
+                        <input type="text"
+                               id="personCity"
+                               name="city"
+                               placeholder="City"
+                               value={city}
+                               onChange={this.handleChange}
+                        />
+                    </div>
+                    <button className={styles.submitBtn} type="submit">
                         Add Information
                     </button>
                 </form>
-
             </div>
         )
     }

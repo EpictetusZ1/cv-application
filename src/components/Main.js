@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PersonalBlock from "./PersonalBlock";
 import DisplayData from "./DisplayData";
+import styles from "../styles/StyleMain.module.css"
 
 class Main extends Component {
     constructor(props) {
@@ -22,10 +23,9 @@ class Main extends Component {
             renderEducational: false,
             renderPractical: false
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleSubmit(e, obj) {
+    handleSubmit = (e, obj) => {
         e.preventDefault()
         this.setState({
             personalData: obj,
@@ -36,15 +36,21 @@ class Main extends Component {
     render() {
 
         return (
-            <div>
-                <h1 className={"title"}> CV Generator </h1>
-                {/* Personal Info */}
-                {/* Conditional Render to Remove form on submit*/}
-                {!this.state.renderPersonal && <PersonalBlock data={this.state.personalData} updateParent={this.handleSubmit} />}
-                {this.state.renderPersonal && <DisplayData dataObj={this.state.personalData} />}
+            <div className={styles.resumeMain}>
 
-                {/* Educational Info */}
-                {/* Practical Info */}
+                <div className={styles.addDataHalf}>
+                    {/* Personal Info */}
+                    { !this.state.renderPersonal &&
+                        <PersonalBlock data={this.state.personalData}
+                                       updateParent={this.handleSubmit}
+                        /> }
+
+                    {/* Educational Info */}
+                    {/* Practical Info */}
+                </div>
+                <div className={styles.resumeHalf}>
+                    { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData} />}
+                </div>
             </div>
         )
     }

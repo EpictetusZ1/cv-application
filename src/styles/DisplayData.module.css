@@ -1,0 +1,36 @@
+@import "colors.css";
+
+.resumeBlock {
+    padding: 10px 10px;
+}
+
+.resumeBlock p {
+    width: 80%;
+}
+
+b {
+    margin-right: 15px;
+}
+
+.resumeBlock h2 {
+    font-family: "Lucida Grande", sans-serif;
+    color: var(--green-sheen);
+    letter-spacing: 1px;
+}
+
+.editContent {
+    float: right;
+    width: 4em;
+    height: 2em;
+    line-height: 1.5em;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--independence);
+    color: var(--eggshell);
+    padding: 5px;
+}
+
+.editContent {
+    cursor: pointer;
+}
