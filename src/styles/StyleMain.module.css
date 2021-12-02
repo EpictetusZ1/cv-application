@@ -35,6 +35,10 @@
     width: 33%;
     height: 100%;
     margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .resumeHalf {
@@ -46,6 +50,7 @@
 }
 
 .dataBlock {
+    margin-bottom: 15px;
     background-color: var(--green-sheen);
     border-radius: 15px;
     padding: 15px;
@@ -64,7 +69,7 @@
 }
 
 .formEl > label {
-    margin: 0 10px 5px 0px;
+    margin: 0 10px 5px 0;
     font-weight: bold;
 }
 
@@ -90,5 +95,21 @@
 }
 
 .submitBtn:hover {
+    cursor: pointer;
+}
+
+.addSection {
+    margin-top: 50px;
+    width: 70%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--green-sheen);
+    font-family: Verdana, sans-serif;
+    color: var(--eggshell);
+    font-size: 1.4em;
+}
+
+.addSection:hover {
     cursor: pointer;
 }
