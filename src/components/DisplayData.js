@@ -7,7 +7,7 @@ class DisplayData extends Component {
         const { name, email, phone, city} = object
         return (
             <div>
-                <h2>General: </h2>
+                <h2>General Information: </h2>
                 <p> <b>Name: </b> {name}</p>
                 <p> <b>Email: </b> {email}</p>
                 <p> <b>Phone: </b> {phone}</p>
@@ -18,10 +18,11 @@ class DisplayData extends Component {
 
     render() {
         const { ...fields } = this.props.dataObj
-
+        const btnRef = this.props.btnRef
         return (
             <div className={styles.resumeBlock}>
-                <button className={styles.editContent}>Edit</button>
+                <button className={styles.editContent} onClick={btnRef}>Edit</button>
+
                 {this.formatData(fields)}
             </div>
         )

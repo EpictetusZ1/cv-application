@@ -33,6 +33,13 @@ class Main extends Component {
         })
     }
 
+    togglePersonal = () => {
+        console.log(this.state)
+        this.setState({
+            renderPersonal: !this.state.renderPersonal
+        })
+    }
+
     render() {
 
         return (
@@ -49,7 +56,9 @@ class Main extends Component {
                     {/* Practical Info */}
                 </div>
                 <div className={styles.resumeHalf}>
-                    { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData} />}
+                    { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData}
+                                                                btnRef={this.togglePersonal}
+                    />}
                 </div>
             </div>
         )
