@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PersonalBlock from "./PersonalBlock";
 import EducationBlock from "./EducationBlock";
 import DisplayData from "./DisplayData";
+import DisplayEducation from "./DisplayEducation";
 import styles from "../styles/StyleMain.module.css"
 
 class Main extends Component {
@@ -20,11 +21,12 @@ class Main extends Component {
                 startYear: "",
                 endYear: ""
             },
-            practicalExpData: {
+            practicalData: {
 
             },
             renderPersonal: false,
             renderEducation: false,
+            displayEduFields: false,
             renderPractical: false
         }
     }
@@ -41,7 +43,8 @@ class Main extends Component {
         e.preventDefault()
         this.setState({
             educationData: obj,
-            renderEducation: true
+            renderEducation: true,
+            displayEduFields: false
         })
     }
 
@@ -53,7 +56,8 @@ class Main extends Component {
 
     toggleEducation = () => {
         this.setState({
-            renderEducational: !this.state.renderEducational
+            renderEducation: !this.state.renderEducation,
+            displayEduFields: true
         })
     }
 
@@ -61,7 +65,6 @@ class Main extends Component {
 
         return (
             <div className={styles.resumeMain}>
-
                 <div className={styles.addDataHalf}>
                     {/* Personal Info */}
                     { !this.state.renderPersonal &&
@@ -70,23 +73,27 @@ class Main extends Component {
                         /> }
 
                     {/* Educational Info */}
-                    {!this.state.renderEducational &&
-                        <button className={styles.addSection}
-                            onClick={this.toggleEducation}>
-                        Add Education Info
-                    </button>}
-                    {this.state.renderEducational &&
-                        <EducationBlock data={this.state.educationData}
-                                        updateParent={this.handleSubmitEducation}
-                        />
+                    { !this.state.displayEduFields && <button className={styles.addSection}
+                                                              onClick={() => this.setState({
+                                                                    displayEduFields: !this.state.displayEduFields
+                                                              })}
+                    > Add Education Information </button>
                     }
-
+                    { this.state.displayEduFields && <EducationBlock data={this.state.educationData}
+                                                                    updateParent={this.handleSubmitEducation} />
+                    }
                     {/* Practical Info */}
+                    <button className={styles.addSection}>Add Work Experience</button>
+
                 </div>
+                {/* Render Data onto 'CV' */}
                 <div className={styles.resumeHalf}>
                     { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData}
                                                                 btnRef={this.togglePersonal}
                     />}
+                    { this.state.renderEducation && <DisplayEducation dataObj={this.state.educationData}
+                                                                        btnRef={this.toggleEducation}
+                    /> }
                 </div>
             </div>
         )
