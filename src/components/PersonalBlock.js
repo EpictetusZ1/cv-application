@@ -67,7 +67,7 @@ class PersonalBlock extends Component {
                         />
                     </div>
                     <button className={styles.submitBtn} type="submit">
-                        Add Information
+                        Submit
                     </button>
                 </form>
             </div>

@@ -1,8 +1,11 @@
 import React, {Component} from "react";
 import PersonalBlock from "./PersonalBlock";
 import EducationBlock from "./EducationBlock";
+import WorkBlock from "./WorkBlock";
 import DisplayData from "./DisplayData";
 import DisplayEducation from "./DisplayEducation";
+import DisplayWork from "./DisplayWork";
+
 import styles from "../styles/StyleMain.module.css"
 
 class Main extends Component {
@@ -21,13 +24,28 @@ class Main extends Component {
                 startYear: "",
                 endYear: ""
             },
-            practicalData: {
-
+            workData: {
+                companyName: "",
+                position: "",
+                jobDuties: "",
+                employStart: "",
+                employEnd: ""
             },
             renderPersonal: false,
             renderEducation: false,
             displayEduFields: false,
-            renderPractical: false
+            renderWork: false,
+            displayWorkFields: false
+        }
+    }
+
+    addWorkData = () => {
+        return {
+            companyName: "",
+            position: "",
+            jobDuties: "",
+            employStart: "",
+            employEnd: ""
         }
     }
 
@@ -48,6 +66,15 @@ class Main extends Component {
         })
     }
 
+    handleSubmitWork = (e, obj) => {
+        e.preventDefault()
+        this.setState({
+            workData: obj,
+            renderWork: true,
+            displayWorkFields: false
+        })
+    }
+
     togglePersonal = () => {
         this.setState({
             renderPersonal: !this.state.renderPersonal
@@ -60,6 +87,14 @@ class Main extends Component {
             displayEduFields: true
         })
     }
+
+    toggleWork = () => {
+        this.setState({
+            renderWork: !this.state.renderWork,
+            displayWorkFields: true
+        })
+    }
+
 
     render() {
 
@@ -83,7 +118,14 @@ class Main extends Component {
                                                                     updateParent={this.handleSubmitEducation} />
                     }
                     {/* Practical Info */}
-                    <button className={styles.addSection}>Add Work Experience</button>
+                    {!this.state.displayWorkFields && <button className={styles.addSection} onClick={() => this.setState({
+                                                                displayWorkFields: !this.state.displayWorkFields
+                                                                })}
+                    > Add Work Experience </button>}
+
+                    { this.state.displayWorkFields && <WorkBlock data={this.state.workData}
+                                                                 updateParent={this.handleSubmitWork} />
+                    }
 
                 </div>
                 {/* Render Data onto 'CV' */}
@@ -94,6 +136,9 @@ class Main extends Component {
                     { this.state.renderEducation && <DisplayEducation dataObj={this.state.educationData}
                                                                         btnRef={this.toggleEducation}
                     /> }
+                    { this.state.renderWork && <DisplayWork dataObj={this.state.workData}
+                                                            btnRef={this.toggleWork} />
+                        }
                 </div>
             </div>
         )

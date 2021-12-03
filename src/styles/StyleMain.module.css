@@ -51,7 +51,7 @@
 
 .dataBlock {
     width: 400px;
-    margin-bottom: 15px;
+    margin: 15px 0;
     background-color: var(--green-sheen);
     border-radius: 15px;
     padding: 15px;
@@ -60,7 +60,7 @@
 .dataBlock h2 {
     font-family: "Lucida Grande", sans-serif;
     letter-spacing: 1px;
-    margin: 0 0 10px 10px;
+    margin: 10px 5px;
 }
 
 .formEl {
@@ -100,7 +100,7 @@
 }
 
 .addSection {
-    margin-top: 25px;
+    margin: 10px 0;
     width: 80%;
     height: 50px;
     border: none;
