@@ -8,6 +8,7 @@ class DisplayData extends Component {
         return (
             <div>
                 <h2>General Information: </h2>
+                <hr className={styles.hr}/>
                 <p> <b>Name: </b> {name}</p>
                 <p> <b>Email: </b> {email}</p>
                 <p> <b>Phone: </b> {phone}</p>

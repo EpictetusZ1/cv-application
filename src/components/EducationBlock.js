@@ -21,7 +21,7 @@ class EducationBlock extends Component {
     }
 
     render() {
-        const { school, degree, startYear, endYear } = this.state
+        const { schoolName, degreeName, startYear, endYear } = this.state
         return (
             <div className={`${styles.dataBlock} educationInfo`}>
                 <form onSubmit={ (e) => this.props.updateParent(e, this.state) }>
@@ -32,7 +32,7 @@ class EducationBlock extends Component {
                                id="school"
                                name="schoolName"
                                placeholder="Name"
-                               value={school}
+                               value={schoolName}
                                onChange={this.handleChange}
                         />
                     </div>
@@ -42,7 +42,7 @@ class EducationBlock extends Component {
                                id="degree"
                                name="degreeName"
                                placeholder="Degree"
-                               value={degree}
+                               value={degreeName}
                                onChange={this.handleChange}
                         />
                     </div>

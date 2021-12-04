@@ -82,6 +82,7 @@ class Main extends Component {
     }
 
     toggleEducation = () => {
+        console.log(this.state.renderEducation)
         this.setState({
             renderEducation: !this.state.renderEducation,
             displayEduFields: true
@@ -137,8 +138,7 @@ class Main extends Component {
                                                                         btnRef={this.toggleEducation}
                     /> }
                     { this.state.renderWork && <DisplayWork dataObj={this.state.workData}
-                                                            btnRef={this.toggleWork} />
-                        }
+                                                            btnRef={this.toggleWork} />}
                 </div>
             </div>
         )
