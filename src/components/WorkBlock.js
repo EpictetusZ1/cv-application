@@ -25,7 +25,7 @@ class WorkBlock extends Component {
         const { companyName, position, jobDuties, employStart, employEnd} = this.state
 
         return (
-            <div className={`${styles.dataBlock}`}>
+            <div className={styles.dataBlock}>
                 <form onSubmit={ (e) => this.props.updateParent(e, this.state) }>
                     <h2>Add Work Information: </h2>
                     <div className={styles.formEl}>

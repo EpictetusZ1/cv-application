@@ -31,6 +31,7 @@ class Main extends Component {
                 employStart: "",
                 employEnd: ""
             },
+            jobs: [],
             renderPersonal: false,
             renderEducation: false,
             displayEduFields: false,
@@ -39,14 +40,10 @@ class Main extends Component {
         }
     }
 
-    addWorkData = () => {
-        return {
-            companyName: "",
-            position: "",
-            jobDuties: "",
-            employStart: "",
-            employEnd: ""
-        }
+    addWorkData = (obj) => {
+        this.setState({
+            jobs: this.state.jobs.concat(obj)
+        })
     }
 
     handleSubmitPersonal = (e, obj) => {
@@ -71,9 +68,12 @@ class Main extends Component {
         this.setState({
             workData: obj,
             renderWork: true,
-            displayWorkFields: false
+            displayWorkFields: false,
+        }, () => {
+            this.addWorkData(obj)
         })
     }
+
 
     togglePersonal = () => {
         this.setState({
@@ -82,7 +82,6 @@ class Main extends Component {
     }
 
     toggleEducation = () => {
-        console.log(this.state.renderEducation)
         this.setState({
             renderEducation: !this.state.renderEducation,
             displayEduFields: true
@@ -95,7 +94,6 @@ class Main extends Component {
             displayWorkFields: true
         })
     }
-
 
     render() {
 
@@ -129,16 +127,17 @@ class Main extends Component {
                     }
 
                 </div>
+
                 {/* Render Data onto 'CV' */}
                 <div className={styles.resumeHalf}>
                     { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData}
                                                                 btnRef={this.togglePersonal}
                     />}
                     { this.state.renderEducation && <DisplayEducation dataObj={this.state.educationData}
-                                                                        btnRef={this.toggleEducation}
+                                                                      btnRef={this.toggleEducation}
                     /> }
-                    { this.state.renderWork && <DisplayWork dataObj={this.state.workData}
-                                                            btnRef={this.toggleWork} />}
+                    { this.state.renderWork && <DisplayWork dataArray={this.state.jobs}
+                                                            btnRef={this.toggleWork}/>}
                 </div>
             </div>
         )

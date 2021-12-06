@@ -5,7 +5,11 @@
 }
 
 .resumeBlock p {
-    width: 80%;
+    width: 70%;
+}
+
+.largeAnswer {
+    display: inline-flex;
 }
 
 b {

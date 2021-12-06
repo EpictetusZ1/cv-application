@@ -8,6 +8,7 @@ class DisplayEducation extends Component {
         return (
             <div>
                 <h2>Educational Information: </h2>
+                <hr className={styles.hr} />
                 <p> <b>School: </b> {schoolName}</p>
                 <p> <b>Degree: </b> {degreeName}</p>
                 <p> <b>From: </b> {startYear} - {endYear}</p>

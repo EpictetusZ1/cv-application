@@ -114,3 +114,9 @@
 .addSection:hover {
     cursor: pointer;
 }
+
+.hr {
+    border: 2px solid;
+    color: var(--terra-cotta);
+    border-radius: 5px;
+}

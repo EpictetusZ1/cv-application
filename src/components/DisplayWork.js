@@ -7,22 +7,33 @@ class DisplayWork extends Component {
         const { companyName, position, jobDuties, employStart, employEnd} = object
         return (
             <div>
-                <h2>Work Information: </h2>
                 <p> <b>Company: </b> {companyName}</p>
                 <p> <b>Position: </b> {position}</p>
-                <p> <b>Job Duties: </b> {jobDuties}</p>
+                <span className={styles.largeAnswer}>
+                   <b>Job Duties:</b><p>{jobDuties}</p>
+                </span>
                 <p> <b>Employed through: </b> {employStart} - {employEnd}</p>
+                <hr/>
             </div>
         )
     }
 
+
     render() {
-        const { ...fields } = this.props.dataObj
         const btnRef = this.props.btnRef
+        const  myArray  = this.props.dataArray
+
         return (
             <div className={styles.resumeBlock}>
                 <button className={styles.editContent} onClick={btnRef}>Edit</button>
-                {this.formatData(fields)}
+                <h2>Work Information: </h2>
+                <hr className={styles.hr}/>
+                <div>
+                    {myArray.map( (job) => {
+                        return <div key={job.companyName + job.position}> {this.formatData(job)}</div>
+                    })}
+
+                </div>
             </div>
         )
     }
