@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/EpictetusZ1/cv-application/static/css/main.01b4a1a4.chunk.css",
+    "main.js": "/EpictetusZ1/cv-application/static/js/main.0e50e479.chunk.js",
+    "main.js.map": "/EpictetusZ1/cv-application/static/js/main.0e50e479.chunk.js.map",
+    "runtime-main.js": "/EpictetusZ1/cv-application/static/js/runtime-main.a20fe25e.js",
+    "runtime-main.js.map": "/EpictetusZ1/cv-application/static/js/runtime-main.a20fe25e.js.map",
+    "static/js/2.6bd570e2.chunk.js": "/EpictetusZ1/cv-application/static/js/2.6bd570e2.chunk.js",
+    "static/js/2.6bd570e2.chunk.js.map": "/EpictetusZ1/cv-application/static/js/2.6bd570e2.chunk.js.map",
+    "index.html": "/EpictetusZ1/cv-application/index.html",
+    "static/css/main.01b4a1a4.chunk.css.map": "/EpictetusZ1/cv-application/static/css/main.01b4a1a4.chunk.css.map",
+    "static/js/2.6bd570e2.chunk.js.LICENSE.txt": "/EpictetusZ1/cv-application/static/js/2.6bd570e2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a20fe25e.js",
+    "static/js/2.6bd570e2.chunk.js",
+    "static/css/main.01b4a1a4.chunk.css",
+    "static/js/main.0e50e479.chunk.js"
+  ]
+}
