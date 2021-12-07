@@ -14,12 +14,20 @@
     width: 100vw;
 }
 
+@media screen and (max-height: 1500px) {
+    .backGr {
+        height: auto;
+        padding-bottom: 50px;
+    }
+}
+
 .title {
     font-family: "Lucida Grande", sans-serif;
     color: var(--deep-champagne);
     font-size: 2.5em;
     letter-spacing: 2px;
     text-align: center;
+    padding-top: 5px;
     margin-bottom: 10px;
 }
 
@@ -34,7 +42,6 @@
 .addDataHalf {
     width: 33%;
     height: 100%;
-    margin-left: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,10 +54,30 @@
     height: 100%;
     border-radius: 10px;
     background-color: var(--eggshell);
+    box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px, rgba(10, 37, 64, 0.35) 0 -2px 6px 0 inset;
+}
+
+@media screen and (max-width: 1000px) {
+    .resumeMain {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .addDataHalf {
+        width: 80%;
+    }
+
+    .resumeHalf {
+        width: 70%;
+    }
 }
 
 .dataBlock {
-    width: 400px;
+    width: 80%;
     margin: 15px 0;
     background-color: var(--green-sheen);
     border-radius: 15px;
@@ -102,13 +129,15 @@
 .addSection {
     margin: 10px 0;
     width: 80%;
-    height: 50px;
+    height: auto;
+    min-height: 50px;
     border: none;
     border-radius: 10px;
     background-color: var(--green-sheen);
     font-family: Verdana, sans-serif;
     color: var(--eggshell);
     font-size: 1.4em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
 .addSection:hover {
