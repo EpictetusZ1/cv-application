@@ -9,7 +9,8 @@ class WorkBlock extends Component {
             position: this.props.data.position,
             jobDuties: this.props.data.jobDuties,
             employStart: this.props.data.employStart,
-            employEnd: this.props.data.employEnd
+            employEnd: this.props.data.employEnd,
+            id: this.props.data.id
         }
     }
 

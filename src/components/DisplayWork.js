@@ -25,14 +25,18 @@ class DisplayWork extends Component {
 
         return (
             <div className={styles.resumeBlock}>
-                <button className={styles.editContent} onClick={btnRef}>Edit</button>
                 <h2>Work Information: </h2>
                 <hr className={styles.hr}/>
                 <div>
-                    {myArray.map( (job) => {
-                        return <div key={job.companyName + job.position}> {this.formatData(job)}</div>
+                    {myArray.map( (job, index) => {
+                        return <div key={myArray[index].id}>
+                            <button className={styles.editContent} onClick={ () => {
+                                btnRef(myArray[index].id)
+                            }
+                            }>Edit</button>
+                            {this.formatData(job)}
+                        </div>
                     })}
-
                 </div>
             </div>
         )
