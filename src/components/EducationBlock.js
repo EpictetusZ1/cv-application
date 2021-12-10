@@ -1,78 +1,65 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import styles from "../styles/StyleMain.module.css"
 
-class EducationBlock extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            schoolName: this.props.data.schoolName,
-            degreeName: this.props.data.degreeName,
-            startYear: this.props.data.startYear,
-            endYear: this.props.data.endYear,
-        }
-    }
+function EducationBlock(props) {
+    const [eduData, setEduData] = useState(props.data)
 
-    handleChange = (e) => {
+    const handleChange = (e) => {
         const target = e.target
         const name = target.name
-        this.setState({
-            [name]: target.value
-        })
+        setEduData({...eduData, [name]: target.value })
     }
 
-    render() {
-        const { schoolName, degreeName, startYear, endYear } = this.state
-        return (
-            <div className={`${styles.dataBlock} educationInfo`}>
-                <form onSubmit={ (e) => this.props.updateParent(e, this.state) }>
-                    <h2>Add Education Information: </h2>
-                    <div className={styles.formEl}>
-                        <label htmlFor="school">School Name: </label>
-                        <input type="text"
-                               id="school"
-                               name="schoolName"
-                               placeholder="Name"
-                               value={schoolName}
-                               onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className={styles.formEl}>
-                        <label htmlFor="degree">Degree Name: </label>
-                        <input type="text"
-                               id="degree"
-                               name="degreeName"
-                               placeholder="Degree"
-                               value={degreeName}
-                               onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className={styles.formEl}>
-                        <label htmlFor="startYear">Start Year: </label>
-                        <input type="text"
-                               id="startYear"
-                               name="startYear"
-                               placeholder="Start"
-                               value={startYear}
-                               onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className={styles.formEl}>
-                        <label htmlFor="endYear">End Year: </label>
-                        <input type="text"
-                               id="endYear"
-                               name="endYear"
-                               placeholder="End Year"
-                               value={endYear}
-                               onChange={this.handleChange}
-                        />
-                    </div>
-                    <button className={styles.submitBtn} type="submit">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        )
-    }
+    return (
+        <div className={`${styles.dataBlock} educationInfo`}>
+            <form onSubmit={ (e) => props.updateParent(e, eduData) }>
+                <h2>Add Education Information: </h2>
+                <div className={styles.formEl}>
+                    <label htmlFor="school">School Name: </label>
+                    <input type="text"
+                           id="school"
+                           name="schoolName"
+                           placeholder="Name"
+                           value={eduData.schoolName}
+                           onChange={handleChange}
+                    />
+                </div>
+                <div className={styles.formEl}>
+                    <label htmlFor="degree">Degree Name: </label>
+                    <input type="text"
+                           id="degree"
+                           name="degreeName"
+                           placeholder="Degree"
+                           value={eduData.degreeName}
+                           onChange={handleChange}
+                    />
+                </div>
+                <div className={styles.formEl}>
+                    <label htmlFor="startYear">Start Year: </label>
+                    <input type="text"
+                           id="startYear"
+                           name="startYear"
+                           placeholder="Start"
+                           value={eduData.startYear}
+                           onChange={handleChange}
+                    />
+                </div>
+                <div className={styles.formEl}>
+                    <label htmlFor="endYear">End Year: </label>
+                    <input type="text"
+                           id="endYear"
+                           name="endYear"
+                           placeholder="End Year"
+                           value={eduData.endYear}
+                           onChange={handleChange}
+                    />
+                </div>
+                <button className={styles.submitBtn} type="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+    )
 }
 
 export default EducationBlock

@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "../styles/DisplayData.module.css"
 
-class DisplayEducation extends Component {
+function DisplayEducation(props) {
+    const { ...fields } = props.dataObj
+    const btnRef = props.btnRef
 
-    formatData = (object) => {
+    const formatData = (object) => {
         const { schoolName, degreeName, startYear, endYear} = object
         return (
             <div>
@@ -16,17 +18,12 @@ class DisplayEducation extends Component {
         )
     }
 
-    render() {
-        const { ...fields } = this.props.dataObj
-        const btnRef = this.props.btnRef
-        return (
-            <div className={styles.resumeBlock} >
-                <button className={styles.editContent} onClick={btnRef}>Edit</button>
-
-                {this.formatData(fields)}
-            </div>
-        )
-    }
+    return (
+        <div className={styles.resumeBlock} >
+            <button className={styles.editContent} onClick={btnRef}>Edit</button>
+            {formatData(fields)}
+        </div>
+    )
 }
 
 export default DisplayEducation
