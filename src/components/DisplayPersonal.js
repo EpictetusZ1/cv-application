@@ -2,6 +2,8 @@ import React from "react";
 import styles from "../styles/DisplayData.module.css"
 
 function DisplayPersonal(props) {
+    const { ...fields } = props.dataObj
+    const btnRef = props.btnRef
 
     const formatData = (object) => {
         const { name, email, phone, city} = object
@@ -16,9 +18,6 @@ function DisplayPersonal(props) {
             </div>
         )
     }
-
-    const { ...fields } = props.dataObj
-    const btnRef = props.btnRef
 
     return (
         <div className={styles.resumeBlock}>

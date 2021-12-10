@@ -6,6 +6,7 @@ function DisplayWork(props) {
     const myArray = props.dataArray
 
     const formatData = (object) => {
+
         const {companyName, position, jobDuties, employStart, employEnd} = object
         return (
             <div>

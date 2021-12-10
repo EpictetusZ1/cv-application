@@ -1,156 +1,169 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
 import PersonalBlock from "./PersonalBlock";
 import EducationBlock from "./EducationBlock";
 import WorkBlock from "./WorkBlock";
-import DisplayData from "./DisplayData";
+import DisplayPersonal from "./DisplayPersonal";
 import DisplayEducation from "./DisplayEducation";
 import DisplayWork from "./DisplayWork";
 
 import uniqid from "uniqid";
 import styles from "../styles/StyleMain.module.css"
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            personalData: {
-                name: "",
-                email: "",
-                phone: "",
-                city: "",
-            },
-            educationData: {
-                schoolName: "",
-                degreeName: "",
-                startYear: "",
-                endYear: ""
-            },
-            workData: {
-                companyName: "",
-                position: "",
-                jobDuties: "",
-                employStart: "",
-                employEnd: "",
-                id: uniqid()
-            },
-            jobs: [],
-            renderPersonal: false,
-            renderEducation: false,
-            displayEduFields: false,
-            renderWork: false,
-            displayWorkFields: false,
-            editWork: false,
+function Main() {
+
+    const [personalData, setPersonalData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        city: ""
+    })
+
+    const [educationData, setEducationData] = useState({
+        schoolName: "",
+        degreeName: "",
+        startYear: "",
+        endYear: ""
+    })
+
+    const initWorkState = {
+        companyName: "",
+        position: "",
+        jobDuties: "",
+        employStart: "",
+        employEnd: "",
+        id: uniqid()
+    }
+
+    const [jobs, setJobs] = useState([])
+
+    const [workData, setWorkData] = useState(initWorkState)
+
+    const [isDisplayed, setIsDisplayed] = useState({
+        personal: false,
+        educational: false,
+        educationalBtn: true,
+        showEduFields: false,
+        work: false,
+        workBtn: true,
+        showWorkFields: false
+    })
+
+    const showBtnEdu = (btnState) => {
+        if (btnState) {
+            return (
+                <button className={styles.addSection}
+                        onClick={() => {
+                            setIsDisplayed({...isDisplayed,
+                                educationalBtn: false,
+                                showEduFields: true
+                            })
+                        }}
+                > Add Education Information </button>
+            )
         }
     }
 
-    handleSubmitPersonal = (e, obj) => {
+    const showBtnWork = (btnState) => {
+        if (btnState) {
+            return (
+                <button className={styles.addSection}
+                        onClick={() => {
+                            setIsDisplayed({...isDisplayed,
+                                workBtn: false,
+                                showWorkFields: true
+                            })
+                        }}
+                > Add Work Experience </button>
+            )
+        }
+    }
+
+    const togglePersonal = () => {
+        setIsDisplayed({ ...isDisplayed, personal: !isDisplayed.personal})
+    }
+
+    const toggleEducational = () => {
+        setIsDisplayed({ ...isDisplayed,
+            educational: !isDisplayed.educational,
+            showEduFields: !isDisplayed.showEduFields
+        })
+    }
+
+    const toggleWork = () => {
+        setIsDisplayed({ ...isDisplayed,
+            work: !isDisplayed.work,
+            showWorkFields: !isDisplayed.showWorkFields,
+            workBtn: !isDisplayed.workBtn
+        })
+    }
+
+    const handleSubmitPersonal = (e, obj) => {
         e.preventDefault()
-        this.setState({
-            personalData: obj,
-            renderPersonal: true
-        })
+        togglePersonal()
+        setPersonalData({...obj})
     }
 
-    handleSubmitEducation = (e, obj) => {
+    const handleSubmitEducation = (e, obj) => {
         e.preventDefault()
-        this.setState({
-            educationData: obj,
-            renderEducation: true,
-            displayEduFields: false
-        })
+        toggleEducational()
+        setEducationData({...obj})
     }
 
-    handleSubmitWork = (e, obj) => {
+    const handleSubmitWork = (e, obj) => {
         e.preventDefault()
-        this.setState({
-            jobs: this.state.jobs.concat(obj),
-            workData: {
-                companyName: "",
-                position: "",
-                jobDuties: "",
-                employStart: "",
-                employEnd: "",
-                id: uniqid()
-            },
-            renderWork: true,
-            displayWorkFields: false,
+        setJobs([...jobs, obj])
+        setWorkData(initWorkState)
+        setIsDisplayed({ ...isDisplayed,
+            work: true,
+            showWorkFields: !isDisplayed.showWorkFields,
+            workBtn: !isDisplayed.workBtn
         })
     }
 
-    togglePersonal = () => {
-        this.setState({
-            renderPersonal: !this.state.renderPersonal
-        })
-    }
-
-    toggleEducation = () => {
-        this.setState({
-            renderEducation: !this.state.renderEducation,
-            displayEduFields: true
-        })
-    }
-
-    editWork = (id) => {
-        let target = this.state.jobs.find(o => o.id === id)
-        const curr = this.state.jobs
+    const editWork = (id) => {
+        let target = jobs.find(o => o.id === id)
+        let curr = jobs
         let index = curr.indexOf(target)
         let [edit] = curr.splice(index, 1)
-
-        this.setState({
-            workData: edit,
-            renderWork: !this.state.renderWork,
-            editWork: !this.state.editWork,
-            displayWorkFields: !this.state.displayWorkFields,
-        })
+        setWorkData(edit)
+        toggleWork()
     }
 
-    render() {
+    return (
+        <div className={styles.resumeMain}>
+            <div className={styles.addDataHalf}>
 
-        return (
-            <div className={styles.resumeMain}>
-                <div className={styles.addDataHalf}>
-                    {/* Personal Info */}
-                    { !this.state.renderPersonal &&
-                        <PersonalBlock data={this.state.personalData}
-                                       updateParent={this.handleSubmitPersonal}
-                        /> }
-
-                    {/* Educational Info */}
-                    { !this.state.displayEduFields && <button className={styles.addSection}
-                                                              onClick={() => this.setState({
-                                                                    displayEduFields: !this.state.displayEduFields
-                                                              })}
-                    > Add Education Information </button>
-                    }
-                    { this.state.displayEduFields && <EducationBlock data={this.state.educationData}
-                                                                    updateParent={this.handleSubmitEducation}
-                    />}
-                    {/* Practical Info */}
-                    {!this.state.displayWorkFields && <button className={styles.addSection} onClick={ () => this.setState({
-                                                                displayWorkFields: !this.state.displayWorkFields
-                                                                })}
-                    > Add Work Experience </button>}
-
-                    { this.state.displayWorkFields && <WorkBlock data={this.state.workData}
-                                                                 updateParent={this.handleSubmitWork}
-                    />}
-                </div>
-
-                {/* Render Data onto 'CV' */}
-                <div className={styles.resumeHalf}>
-                    { this.state.renderPersonal && <DisplayData dataObj={this.state.personalData}
-                                                                btnRef={this.togglePersonal}
-                    />}
-                    { this.state.renderEducation && <DisplayEducation dataObj={this.state.educationData}
-                                                                      btnRef={this.toggleEducation}
+                {/* Personal Info */}
+                { !isDisplayed.personal &&
+                    <PersonalBlock data={personalData}
+                                   updateParent={handleSubmitPersonal}
                     /> }
-                    { this.state.renderWork && <DisplayWork dataArray={this.state.jobs}
-                                                            btnRef={this.editWork}
-                    />}
-                </div>
+
+                {/* Educational Info */}
+                { showBtnEdu(isDisplayed.educationalBtn) }
+                { isDisplayed.showEduFields && <EducationBlock data={educationData}
+                                                             updateParent={handleSubmitEducation}
+                />}
+                {/* Practical Info */}
+                { showBtnWork(isDisplayed.workBtn) }
+                { isDisplayed.showWorkFields && <WorkBlock data={workData}
+                                                           updateParent={handleSubmitWork}
+                />}
             </div>
-        )
-    }
+            {/* Render Data onto 'CV' */}
+            <div className={styles.resumeHalf}>
+                { isDisplayed.personal && <DisplayPersonal dataObj={personalData}
+                                                           btnRef={togglePersonal}
+                />}
+                { isDisplayed.educational && <DisplayEducation dataObj={educationData}
+                                                               btnRef={toggleEducational}
+                /> }
+                { isDisplayed.work && <DisplayWork dataArray={jobs}
+                                                   btnRef={editWork}
+                />}
+            </div>
+        </div>
+    )
 }
 
 export default Main
